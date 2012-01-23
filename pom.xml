@@ -53,11 +53,19 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 	<!-- End RichFaces BOM -->
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>2.2.4</version>
+		</dependency>
+
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-web-api</artifactId>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+                xmlns:rich="http://richfaces.org/rich">
+	<ui:define name="content">
+
+		<h:form id="directorForm">
+			<h:panelGrid columns="2">
+
+				<h:outputText value="#{msg.directorNameLabel}" />
+				<h:inputText id="Name" value="#{directorBean.director.name}"
+					required="#{true}" />
+
+				<h:outputText value="#{msg.directorSurnameLabel}" />
+				<h:inputText id="Surname" value="#{directorBean.director.surname}"
+					required="#{true}" >
+					<f:validator validatorId ="directorSurnameValidator"/>
+				</h:inputText>
+
+				<h:outputText value="#{msg.directorCountryOfBirthLabel}" />
+				<h:inputText id="cob"
+					value="#{directorBean.director.countryOfBirth}" required="#{true}" />
+				
+				<h:outputText value="#{msg.directorDateOfBirthLabel}" />
+				<rich:calendar value="#{directorBean.director.dateOfBirth}" type="date"
+					id="calendar" datePattern="dd.MM.yyyy" showApplyButton="#{true}"
+					cellWidth="24px" cellHeight="22px" style="width:200px">
+				
+				</rich:calendar>
+
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.directorFormOKButton}"
+				action="#{directorBean.addDirector}" />
+
+
+			<h:panelGrid>
+				<h:messages id="messages" showDetail="#{true}"
+					showSummary="#{false}" />
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

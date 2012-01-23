@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+	
+	<ui:define name="content">
+	
+    <h:form>
+    
+     <h:dataTable value="#{directorBean.allDirectors}" var="item">
+      <f:facet name="header">#{msg.directorAllLabel}</f:facet>
+      
+      <h:column>
+        <f:facet name="header">#{msg.directorNameLabel}</f:facet>
+        #{item.name}
+      </h:column>
+      
+      <h:column>
+        <f:facet name="header">#{msg.directorSurnameLabel}</f:facet>
+        #{item.surname}
+      </h:column>
+      
+       <h:column>
+        <f:facet name="header">#{msg.directorCountryOfBirthLabel}</f:facet>
+        #{item.countryOfBirth}
+      </h:column>
+      
+       <h:column>
+        <f:facet name="header">#{msg.directorDateOfBirthLabel}</f:facet>
+        <h:outputText value="#{item.dateOfBirth}">
+   		<f:convertDateTime dateStyle="long" type="date" />
+		</h:outputText>
+      </h:column>
+      
+      <h:column>
+        <f:facet name="header">#{msg.action}</f:facet>
+        <h:commandLink value="#{msg.actionDelete}" action="#{directorBean.deleteDirector}"/>
+      </h:column>
+      
+     </h:dataTable>
+    </h:form>
+      
+	</ui:define>
+	
+</ui:composition>
+
+

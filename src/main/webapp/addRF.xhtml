@@ -8,21 +8,21 @@
 	xmlns:rich="http://richfaces.org/rich">
 
 	<ui:define name="content">
-		<h:form id="personForm">
+		<h:form id="directorForm">
 			<h:panelGrid columns="2">
-			
-				<h:outputText value="#{msg.personFirstNameLabel}" />
-				<h:inputText id="name" value="#{personBean.person.firstName}">
+
+				<h:outputText value="#{msg.directorNameLabel}" />
+				<h:inputText id="name" value="#{directorBean.director.name}">
 					<a4j:ajax render="messages" execute="@this" />
 				</h:inputText>
 
-				<h:outputText value="#{msg.personPinLabel}" />
-				<h:inputText id="pin" value="#{personBean.person.pin}" />
+				<h:outputText value="#{msg.directorSurnameLabel}" />
+				<h:inputText id="surname" value="#{directorBean.director.surname}" />
 
 
-				<h:outputText value="#{msg.personDobLabel}" />
+				<h:outputText value="#{msg.directorYearOfBirth}" />
 
-				<rich:calendar value="#{personBean.person.dateOfBirth}"
+				<rich:calendar value="#{directorBean.director.yearOfBirth}"
 					id="calendar" datePattern="dd.MM.yyyy" showApplyButton="#{true}"
 					cellWidth="24px" cellHeight="22px" style="width:200px">
 					<a4j:ajax render="messages" execute="@this" />
@@ -38,17 +38,17 @@
 			<a4j:outputPanel ajaxRendered="true">
 				<h:panelGrid columns="2">
 
-					<h:outputText value="#{msg.personFirstNameLabel}" />
+					<h:outputText value="#{msg.directorNameLabel}" />
 					<h:outputText id="nameOutput"
-						value="#{personBean.person.firstName}" />
+						value="#{directorBean.director.name}" />
 
-					<h:outputText value="#{msg.personPinLabel}" />
-					<h:outputText id="pinOutput" value="#{personBean.person.pin}" />
+					<h:outputText value="#{msg.directorSurnameLabel}" />
+					<h:outputText id="surnameOutput" value="#{directorBean.director.surname}" />
 
 
-					<h:outputText value="#{msg.personDobLabel}" />
-					<h:outputText id="dobOutput"
-						value="#{personBean.person.dateOfBirth}" />
+					<h:outputText value="#{msg.directorYearOfBirthLabel}" />
+					<h:outputText id="yobOutput"
+						value="#{directorBean.director.yearOfBirth}" />
 
 				</h:panelGrid>
 			</a4j:outputPanel>

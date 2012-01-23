@@ -3,6 +3,7 @@ package com.example.jsfdemo.web;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -16,51 +17,53 @@ import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.example.jsfdemo.domain.Person;
-import com.example.jsfdemo.service.PersonManager;
+import com.example.jsfdemo.domain.Director;
+import com.example.jsfdemo.domain.Film;
+import com.example.jsfdemo.service.DBDirector;
+import com.example.jsfdemo.service.DBFilm;
+import com.example.jsfdemo.status.FilmStatus;
+
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
 
 @SessionScoped
-@Named("personBean")
-public class PersonFormBean implements Serializable {
+@Named("filmBean")
+public class FilmFormBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Person person = new Person();
+	private Film film = new Film();
 
-	private ListDataModel<Person> persons = new ListDataModel<Person>();
+	private ListDataModel<Film> films = new ListDataModel<Film>();
 
 	@Inject
-	private PersonManager pm;
-
-	public Person getPerson() {
-		return person;
+	private DBFilm dbFilm = new DBFilm();
+	
+	
+	public String addFilm() {
+		film.setStatus(FilmStatus.valueOf(film.getStatus().toString()));
+		dbFilm.addFilm(film);
+		return "showFilms";
+	
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-
-	public ListDataModel<Person> getAllPersons() {
-		persons.setWrappedData(pm.getAllPersons());
-		return persons;
-	}
-
-	// Actions
-	public String addPerson() {
-		pm.addPerson(person);
-		return "showPersons";
-		//return null;
-	}
-
-	public String deletePerson() {
-		Person personToDelete = persons.getRowData();
-		pm.deletePerson(personToDelete);
+	public String deleteFilm() {
+		Film filmToDelete = films.getRowData();
+		dbFilm.deleteFilm(dbFilm.getIdFilmByTitle(filmToDelete.getTitle()));
 		return null;
 	}
+	
 
 	// Validators
 
 	// Business logic validation
+	
+	
+	/*
 	public void uniquePin(FacesContext context, UIComponent component,
 			Object value) {
 
@@ -76,6 +79,8 @@ public class PersonFormBean implements Serializable {
 		}
 	}
 
+	
+	
 	// Multi field validation with <f:event>
 	// Rule: first two digits of PIN must match last two digits of the year of
 	// birth
@@ -102,4 +107,7 @@ public class PersonFormBean implements Serializable {
 			}
 		}
 	}
+	
+	*/
+	
 }
